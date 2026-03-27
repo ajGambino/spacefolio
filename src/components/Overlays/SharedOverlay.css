@@ -1,0 +1,223 @@
+/* Backdrop & Base */
+
+.overlay-backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 17, 0);
+	backdrop-filter: blur(3px);
+	padding: 20px;
+}
+
+/* Animated Starfield Background */
+
+.overlay-bg-stars {
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(2px 2px at 20% 30%, white, transparent),
+		radial-gradient(2px 2px at 60% 70%, white, transparent),
+		radial-gradient(1px 1px at 50% 50%, white, transparent),
+		radial-gradient(1px 1px at 80% 10%, white, transparent),
+		radial-gradient(2px 2px at 90% 60%, white, transparent),
+		radial-gradient(1px 1px at 33% 80%, white, transparent),
+		radial-gradient(1px 1px at 15% 90%, white, transparent);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
+	animation: starfieldDrift 120s ease-in-out infinite;
+	opacity: 0.2;
+	pointer-events: none;
+}
+
+@keyframes starfieldDrift {
+	0%,
+	100% {
+		background-position: 0% 0%;
+	}
+	50% {
+		background-position: 100% 100%;
+	}
+}
+
+/* Scanline Overlay */
+
+.overlay-bg-scanlines {
+	position: absolute;
+	inset: 0;
+	background: repeating-linear-gradient(
+		0deg,
+		rgba(0, 255, 255, 0.03) 0px,
+		transparent 1px,
+		transparent 2px,
+		rgba(0, 255, 255, 0.03) 3px
+	);
+	animation: scanlineScroll 8s linear infinite;
+	opacity: 0.1;
+	pointer-events: none;
+}
+
+@keyframes scanlineScroll {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(20px);
+	}
+}
+
+/* Main Container */
+
+.overlay-container {
+	position: relative;
+	width: 100%;
+	max-width: 1400px;
+	max-height: 90vh;
+	background: linear-gradient(
+		135deg,
+		rgba(10, 15, 40, 0.5) 0%,
+		rgba(15, 20, 50, 0.55) 50%,
+		rgba(10, 15, 40, 0.5) 100%
+	);
+	border: 2px solid rgba(0, 255, 255, 0.3);
+	border-radius: 16px;
+	box-shadow:
+		0 0 40px rgba(0, 255, 255, 0.2),
+		0 0 80px rgba(100, 150, 255, 0.15),
+		inset 0 0 60px rgba(0, 255, 255, 0.05);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Header */
+
+.overlay-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 24px 32px;
+	border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+	background: linear-gradient(
+		90deg,
+		rgba(0, 255, 255, 0.05) 0%,
+		transparent 100%
+	);
+	flex-shrink: 0;
+}
+
+.overlay-title {
+	font-size: 28px;
+	font-weight: 700;
+	color: #ffffff;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.title-icon {
+	font-size: 32px;
+	filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.8));
+}
+
+/* Close Button */
+
+.close-btn {
+	width: 40px;
+	height: 40px;
+	background: rgba(255, 50, 100, 0.2);
+	border: 1px solid rgba(255, 50, 100, 0.4);
+	border-radius: 8px;
+	color: #ff6b9d;
+	font-size: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	flex-shrink: 0;
+}
+
+.close-btn:hover {
+	background: rgba(255, 50, 100, 0.3);
+	border-color: rgba(255, 50, 100, 0.6);
+	box-shadow: 0 0 16px rgba(255, 50, 100, 0.4);
+}
+
+.close-btn:focus-visible {
+	outline: 2px solid #ff6b9d;
+	outline-offset: 2px;
+}
+
+/* Content Area */
+
+.overlay-content {
+	padding: 32px;
+	overflow-y: auto;
+	flex: 1;
+}
+
+/* Custom Scrollbar */
+
+.overlay-content::-webkit-scrollbar {
+	width: 10px;
+}
+
+.overlay-content::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+}
+
+.overlay-content::-webkit-scrollbar-thumb {
+	background: rgba(0, 255, 255, 0.3);
+	border-radius: 10px;
+	border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.overlay-content::-webkit-scrollbar-thumb:hover {
+	background: rgba(0, 255, 255, 0.5);
+}
+
+/* responsive */
+
+@media (max-width: 768px) {
+	.overlay-backdrop {
+		padding: 0;
+		align-items: stretch;
+	}
+
+	.overlay-container {
+		max-height: 100vh;
+		border-radius: 0;
+		border: none;
+	}
+
+	.overlay-header {
+		padding: 20px;
+	}
+
+	.overlay-title {
+		font-size: 24px;
+	}
+
+	.overlay-content {
+		padding: 20px;
+	}
+}
+
+@media (max-width: 480px) {
+	.overlay-title {
+		font-size: 20px;
+	}
+
+	.title-icon {
+		font-size: 24px;
+	}
+}
