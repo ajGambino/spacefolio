@@ -5,7 +5,7 @@ export const projects = [
 		shortDescription:
 			'Real-time probability model that prices BTC event outcomes from volatility and return distributions, identifying mispriced contracts and executing trades.',
 		longDescription:
-			'Built a trading pipeline that ingests live BTC-USD candles, computes rolling realized volatility, forecasts contract settlement probabilities across configurable horizons, and places/records trades via the Kalshi API. The system emphasizes reliability (freshness diagnostics, deterministic settlement scheduling, and detailed trade logs) and is designed for iterative backtesting as more trades accumulate. The system is designed to surface potential edge by comparing model-implied probabilities against market prices.',
+			'Built a trading pipeline that ingests live BTC-USD candles, computes rolling realized volatility, forecasts contract settlement probabilities across configurable horizons, and places/records trades via the Kalshi API. The system emphasizes reliability (freshness diagnostics, deterministic settlement scheduling, and detailed trade logs) and is designed for iterative backtesting as more trades accumulate.',
 		system: [
 			'Probability Modeling',
 			'Time Series',
@@ -113,7 +113,7 @@ export const projects = [
 		shortDescription:
 			'Concurrent auction system with blind bidding, deterministic resolution logic, and synchronized state across players in real-time.',
 		longDescription:
-			'Built a real-time auction system centered around simultaneous blind bidding, where multiple players submit hidden inputs that must be resolved deterministically and fairly under strict timing constraints. The core challenge was designing a server-side engine that enforces bidding rules, budget constraints, and tie-breaking logic while maintaining a consistent game state across all clients. The system uses WebSockets for live synchronization, ensuring all players see the same state transitions in real-time, with robust reconnection handling to preserve continuity mid-game. Supabase (PostgreSQL) handles persistence, while the backend coordinates auction flow, timers, and validation logic. The result is a multiplayer system that behaves predictably under concurrency, where outcomes are fully determined by rules rather than client-side race conditions or timing inconsistencies. The system enforces deterministic outcomes regardless of timing or client behavior.',
+			'Built a real-time auction system centered around simultaneous blind bidding, where multiple players submit hidden inputs that must be resolved deterministically and fairly under strict timing constraints. The core challenge was designing a server-side engine that enforces bidding rules, budget constraints, and tie-breaking logic while maintaining a consistent game state across all clients. The system uses WebSockets for live synchronization, ensuring all players see the same state transitions in real-time, with robust reconnection handling to preserve continuity mid-game. Supabase (PostgreSQL) handles persistence, while the backend coordinates auction flow, timers, and validation logic. The system enforces deterministic outcomes regardless of timing or client behavior.',
 		system: [
 			'Real-Time Systems',
 			'Concurrency',
