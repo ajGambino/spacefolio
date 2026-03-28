@@ -124,40 +124,26 @@ function AboutOverlay({ isOpen, onClose }) {
 								>
 									<h3 className='bio-heading'>Hello, I'm Alex</h3>
 									<div className='bio-divider' />
-									<p className='bio-text'>
-										I build probabilistic systems and simulation engines for
-										high-stakes decision making. Before this, I spent 17 years
-										as a professional poker player, where every decision was an
-										EV calculation. That same framework now drives how I
-										approach software.
-									</p>
 
+									<p className='bio-text'>
+										I spent 17 years as a professional poker player. Every
+										decision was an EV calculation. That same framework now
+										drives how I approach software, building systems for
+										high-stakes decision making. The goal isn't just to model
+										reality, it's to exploit where it's wrong.
+									</p>
 									<p className='bio-text'>
 										My work sits at the intersection of analytics and
 										engineering, focused on simulation, probability modeling,
-										and optimization. I’ve built DFS optimizers, tournament
-										engines, and real-time crypto probability models designed to
-										identify mispriced outcomes. The goal isn’t just to model
-										reality; it’s to exploit where it’s wrong.
+										and constraint optimization. I prioritize speed, iteration,
+										and signal over overengineering abstractions, designing
+										systems that scale as they evolve.
 									</p>
-
 									<p className='bio-text'>
-										I operate across React and Python, building full-stack tools
-										that are lean, fast, and iteration first. I care more about
-										getting a working system with real insight than
-										overengineering abstractions, but I design projects so they
-										can scale as they evolve. Monte Carlo methods, distribution
-										modeling, and constraint optimization aren’t just academic
-										concepts here, they’re implementation details.
-									</p>
-
-									<p className='bio-text'>
-										More recently, I’ve been pushing deeper into stochastic
-										modeling and machine learning building systems that learn
-										from data, adapt to new information, and improve decision
-										quality over time. The direction is clear; simulation
-										driven, data informed systems, designed to operate in
-										environments where uncertainty isn’t a bug, it’s the edge.
+										More recently, I've been pushing deeper into stochastic
+										modeling and machine learning systems that adapt as
+										conditions change. Uncertainty isn't a problem I'm solving
+										around. It's the environment I build for.
 									</p>
 									{/* Skills/Tech Stack */}
 									<div className='skills-section'>

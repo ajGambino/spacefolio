@@ -4,19 +4,19 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
 const sectionPositions = [
-	new THREE.Vector3(0, 0, 0), // Home
+	new THREE.Vector3(-10, -20, -10), // Home
 	new THREE.Vector3(50, 18, -55), // Credits
 	new THREE.Vector3(-55, 14, -45), // About
-	new THREE.Vector3(12, 7, -25), // Projects
+	new THREE.Vector3(10, 5, -25), // Projects
 	new THREE.Vector3(-15, 8, -45), // Contact
-	new THREE.Vector3(-80, 5, 30), // Venus
-	new THREE.Vector3(90, 25, -90), // Mercury
-	new THREE.Vector3(-20, 35, -110), // Mars
-	new THREE.Vector3(-100, 40, -85), // Jupiter
-	new THREE.Vector3(100, 15, -25), // Saturn
-	new THREE.Vector3(20, 40, -120), // Uranus
-	new THREE.Vector3(110, 30, -70), // Neptune
-	new THREE.Vector3(-90, 10, -100), // Pluto
+	new THREE.Vector3(-80, 5, 35), // Venus
+	new THREE.Vector3(300, 45, -90), // Mercury
+	new THREE.Vector3(-233, -60, -440), // Mars
+	new THREE.Vector3(-270, 100, -85), // Jupiter
+	new THREE.Vector3(300, 40, -250), // Saturn
+	new THREE.Vector3(-142, 53, -220), // Uranus
+	new THREE.Vector3(133, 137, -570), // Neptune
+	new THREE.Vector3(-200, 45, -110), // Pluto
 	new THREE.Vector3(-150, 140, -300), // Black Hole
 ];
 
