@@ -167,7 +167,7 @@ const SpaceshipHybrid = forwardRef(({ targetSection, onReachTarget }, ref) => {
 		<group ref={ref} position={[0, 0, 0]}>
 			{/* Use GLTF model if available, otherwise fallback to geometry */}
 			{model ? (
-				<group scale={[0.005, 0.005, 0.005]} rotation={[0, Math.PI, 0]}>
+				<group scale={[0.0033, 0.0033, 0.0033]} rotation={[0, Math.PI, 0]}>
 					<primitive object={model.clone()} />
 				</group>
 			) : (

@@ -95,6 +95,40 @@ function AppHybrid() {
 				</Suspense>
 			</Canvas>
 
+			{/* Navigation Bar */}
+			<nav className='main-navigation'>
+				<button
+					className={`nav-button ${arrivedSection === 0 ? 'active' : ''}`}
+					onClick={() => handleSectionClick(0)}
+				>
+					Home
+				</button>
+				<button
+					className={`nav-button ${arrivedSection === 2 ? 'active' : ''}`}
+					onClick={() => handleSectionClick(2)}
+				>
+					About
+				</button>
+				<button
+					className={`nav-button ${arrivedSection === 3 ? 'active' : ''}`}
+					onClick={() => handleSectionClick(3)}
+				>
+					Projects
+				</button>
+				<button
+					className={`nav-button ${arrivedSection === 4 ? 'active' : ''}`}
+					onClick={() => handleSectionClick(4)}
+				>
+					Contact
+				</button>
+				<button
+					className={`nav-button ${arrivedSection === 1 ? 'active' : ''}`}
+					onClick={() => handleSectionClick(1)}
+				>
+					Credits
+				</button>
+			</nav>
+
 			{/* Controls Info */}
 			<div className='controls-info'>
 				<h2>🚀 Controls</h2>
