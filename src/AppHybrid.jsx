@@ -46,6 +46,8 @@ function AppHybrid() {
 	const handleManualFlight = () => {
 		// Clear the arrived section when manually flying
 		setArrivedSection(null);
+		// Also clear any pending target to prevent auto-navigation from resuming
+		setTargetSection(null);
 	};
 
 	const handleReachTarget = (reachedSectionIndex) => {

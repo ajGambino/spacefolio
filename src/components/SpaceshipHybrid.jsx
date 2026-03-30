@@ -118,6 +118,7 @@ const SpaceshipHybrid = forwardRef(({ targetSection, onReachTarget, onManualFlig
 			// Notify parent that manual flight has started (only once)
 			if (hasKeyInput && !isManualFlying.current && onManualFlight) {
 				isManualFlying.current = true;
+				lastTargetSection.current = -1; // Reset to allow re-navigation to same section
 				onManualFlight();
 			}
 			// Rotation controls
