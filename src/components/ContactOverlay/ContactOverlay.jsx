@@ -93,7 +93,10 @@ function ContactOverlay({ isOpen, onClose }) {
 				}),
 			});
 
-			if (response.ok) {
+			console.log('Response status:', response.status);
+			console.log('Response ok:', response.ok);
+
+			if (response.ok || response.status === 200) {
 				setSubmitStatus({
 					state: 'success',
 					message: 'Message sent successfully! I\'ll get back to you soon.',
@@ -105,7 +108,9 @@ function ContactOverlay({ isOpen, onClose }) {
 					onClose();
 				}, 2000);
 			} else {
-				throw new Error('Form submission failed');
+				const errorText = await response.text();
+				console.error('Form submission failed:', response.status, errorText);
+				throw new Error(`Form submission failed with status ${response.status}`);
 			}
 		} catch (error) {
 			console.error('Form submission error:', error);
