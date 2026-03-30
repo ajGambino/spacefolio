@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import { Stars } from '@react-three/drei';
-import { useRef, useState, useEffect, Suspense } from 'react';
+import { useRef, useState, Suspense } from 'react';
 import SpaceshipHybrid from './components/SpaceshipHybrid';
 import SectionMarkersClickable from './components/SectionMarkersClickable';
 import SceneManual from './components/SceneManual';
@@ -18,25 +18,8 @@ function AppHybrid() {
 	const [isCreditsOverlayOpen, setIsCreditsOverlayOpen] = useState(false);
 	const [isAboutOverlayOpen, setIsAboutOverlayOpen] = useState(false);
 	const [isContactOverlayOpen, setIsContactOverlayOpen] = useState(false);
-	const [hasInteracted, setHasInteracted] = useState(false);
-
-	// Check localStorage after mount (client-only)
-	useEffect(() => {
-		const stored = window.localStorage.getItem('hasInteracted') === 'true';
-		setHasInteracted(stored);
-	}, []);
-
-	// Handler to mark meaningful interaction
-	const handleFirstInteraction = () => {
-		if (!hasInteracted) {
-			setHasInteracted(true);
-			window.localStorage.setItem('hasInteracted', 'true');
-		}
-	};
 
 	const handleSectionClick = (sectionIndex) => {
-		handleFirstInteraction(); // Track interaction
-
 		// If already at this section and we know our position, just open the overlay
 		if (sectionIndex === arrivedSection && arrivedSection !== null) {
 			if (sectionIndex === 1) {
@@ -126,7 +109,6 @@ function AppHybrid() {
 					<SectionMarkersClickable
 						onSectionClick={handleSectionClick}
 						arrivedSection={arrivedSection}
-						showProjectsBeacon={!hasInteracted}
 					/>
 					<SpaceshipHybrid
 						ref={shipRef}
