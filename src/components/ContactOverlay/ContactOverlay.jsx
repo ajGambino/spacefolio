@@ -11,6 +11,10 @@ function ContactOverlay({ isOpen, onClose }) {
 		email: '',
 		message: '',
 	});
+	const [submitStatus, setSubmitStatus] = useState({
+		state: 'idle', // 'idle' | 'submitting' | 'success' | 'error'
+		message: '',
+	});
 
 	useEffect(() => {
 		const handleEscape = (e) => {
@@ -48,6 +52,7 @@ function ContactOverlay({ isOpen, onClose }) {
 	useEffect(() => {
 		if (!isOpen) {
 			setFormData({ name: '', email: '', message: '' });
+			setSubmitStatus({ state: 'idle', message: '' });
 		}
 	}, [isOpen]);
 
@@ -65,12 +70,50 @@ function ContactOverlay({ isOpen, onClose }) {
 		}));
 	};
 
-	const handleSubmit = (e) => {
+	// Helper function to URL-encode form data
+	const encode = (data) => {
+		return Object.keys(data)
+			.map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+			.join('&');
+	};
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// TODO: EmailJS integration will go here
-		console.log('Form submitted:', formData);
-		// Placeholder: Show success message or handle submission
-		alert('EmailJS integration pending. Form data logged to console.');
+		setSubmitStatus({ state: 'submitting', message: '' });
+
+		try {
+			const response = await fetch('/', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				body: encode({
+					'form-name': 'contact',
+					name: formData.name,
+					email: formData.email,
+					message: formData.message,
+				}),
+			});
+
+			if (response.ok) {
+				setSubmitStatus({
+					state: 'success',
+					message: 'Message sent successfully! I\'ll get back to you soon.',
+				});
+				setFormData({ name: '', email: '', message: '' });
+
+				// Close overlay after 2 seconds on success
+				setTimeout(() => {
+					onClose();
+				}, 2000);
+			} else {
+				throw new Error('Form submission failed');
+			}
+		} catch (error) {
+			console.error('Form submission error:', error);
+			setSubmitStatus({
+				state: 'error',
+				message: 'Failed to send message. Please try again or contact me directly.',
+			});
+		}
 	};
 
 	if (!isOpen) return null;
@@ -144,11 +187,24 @@ function ContactOverlay({ isOpen, onClose }) {
 								{/* Contact Form */}
 								<motion.form
 									className='contact-form'
+									name='contact'
+									method='POST'
+									data-netlify='true'
+									data-netlify-honeypot='bot-field'
 									onSubmit={handleSubmit}
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ delay: 0.25 }}
 								>
+									{/* Hidden fields for Netlify */}
+									<input type='hidden' name='form-name' value='contact' />
+									<div style={{ display: 'none' }}>
+										<label>
+											Don't fill this out if you're human:{' '}
+											<input name='bot-field' />
+										</label>
+									</div>
+
 									{/* Name Field */}
 									<div className='form-field'>
 										<label htmlFor='name' className='form-label'>
@@ -204,18 +260,38 @@ function ContactOverlay({ isOpen, onClose }) {
 									<motion.button
 										type='submit'
 										className='form-submit-btn'
-										whileHover={{ scale: 1.02 }}
-										whileTap={{ scale: 0.98 }}
+										disabled={submitStatus.state === 'submitting'}
+										whileHover={
+											submitStatus.state !== 'submitting'
+												? { scale: 1.02 }
+												: {}
+										}
+										whileTap={
+											submitStatus.state !== 'submitting' ? { scale: 0.98 } : {}
+										}
 									>
-										<span className='btn-icon'>📨</span>
-										Send Message
+										<span className='btn-icon'>
+											{submitStatus.state === 'submitting' ? '⏳' : '📨'}
+										</span>
+										{submitStatus.state === 'submitting'
+											? 'Sending...'
+											: 'Send Message'}
 									</motion.button>
 
-									{/* EmailJS Notice */}
-									<p className='emailjs-notice'>
-										<span className='notice-icon'>⚙️</span>
-										EmailJS integration pending
-									</p>
+									{/* Status Messages */}
+									{submitStatus.message && (
+										<motion.p
+											className={`form-status ${submitStatus.state}`}
+											initial={{ opacity: 0, y: -10 }}
+											animate={{ opacity: 1, y: 0 }}
+											transition={{ duration: 0.3 }}
+										>
+											<span className='status-icon'>
+												{submitStatus.state === 'success' ? '✓' : '⚠'}
+											</span>
+											{submitStatus.message}
+										</motion.p>
+									)}
 								</motion.form>
 							</div>
 						</motion.div>

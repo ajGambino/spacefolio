@@ -20,11 +20,32 @@ function AppHybrid() {
 	const [isContactOverlayOpen, setIsContactOverlayOpen] = useState(false);
 
 	const handleSectionClick = (sectionIndex) => {
+		// If already at this section and we know our position, just open the overlay
+		if (sectionIndex === arrivedSection && arrivedSection !== null) {
+			if (sectionIndex === 1) {
+				setIsCreditsOverlayOpen(true);
+			} else if (sectionIndex === 2) {
+				setIsAboutOverlayOpen(true);
+			} else if (sectionIndex === 3) {
+				setIsProjectsOverlayOpen(true);
+			} else if (sectionIndex === 4) {
+				setIsContactOverlayOpen(true);
+			}
+			return;
+		}
+
+		// Otherwise, navigate to the new section
 		setTargetSection(sectionIndex);
+		setArrivedSection(null); // Clear current location while in transit
 		setIsProjectsOverlayOpen(false);
 		setIsCreditsOverlayOpen(false);
 		setIsAboutOverlayOpen(false);
 		setIsContactOverlayOpen(false);
+	};
+
+	const handleManualFlight = () => {
+		// Clear the arrived section when manually flying
+		setArrivedSection(null);
 	};
 
 	const handleReachTarget = (reachedSectionIndex) => {
@@ -91,6 +112,7 @@ function AppHybrid() {
 						ref={shipRef}
 						targetSection={targetSection}
 						onReachTarget={handleReachTarget}
+						onManualFlight={handleManualFlight}
 					/>
 				</Suspense>
 			</Canvas>

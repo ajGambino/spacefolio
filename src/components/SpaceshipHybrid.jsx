@@ -20,12 +20,13 @@ const sectionPositions = [
 	new THREE.Vector3(-150, 140, -300), // Black Hole
 ];
 
-const SpaceshipHybrid = forwardRef(({ targetSection, onReachTarget }, ref) => {
+const SpaceshipHybrid = forwardRef(({ targetSection, onReachTarget, onManualFlight }, ref) => {
 	const velocity = useRef(new THREE.Vector3());
 	const [keys, setKeys] = useState({});
 	const [isAutoNavigating, setIsAutoNavigating] = useState(false);
 	const targetPosition = useRef(new THREE.Vector3());
 	const lastTargetSection = useRef(-1);
+	const isManualFlying = useRef(false);
 
 	// Try to load the GLTF model
 	let model = null;
@@ -62,6 +63,7 @@ const SpaceshipHybrid = forwardRef(({ targetSection, onReachTarget }, ref) => {
 		if (targetSection !== null && targetSection !== lastTargetSection.current) {
 			targetPosition.current.copy(sectionPositions[targetSection]);
 			setIsAutoNavigating(true);
+			isManualFlying.current = false; // Reset manual flying flag when auto-nav starts
 			lastTargetSection.current = targetSection;
 		}
 	}, [targetSection]);
@@ -113,6 +115,11 @@ const SpaceshipHybrid = forwardRef(({ targetSection, onReachTarget }, ref) => {
 			}
 		} else {
 			// MANUAL CONTROL MODE
+			// Notify parent that manual flight has started (only once)
+			if (hasKeyInput && !isManualFlying.current && onManualFlight) {
+				isManualFlying.current = true;
+				onManualFlight();
+			}
 			// Rotation controls
 			if (keys['ArrowLeft']) {
 				ref.current.rotation.y += rotationSpeed * delta;
