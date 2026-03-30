@@ -16,6 +16,42 @@ useGLTF.preload('/models/neptune.glb');
 useGLTF.preload('/models/pluto.glb');
 useGLTF.preload('/models/black_hole.glb');
 
+function PulseBeacon({ position, isVisible }) {
+	const beaconRef = useRef();
+	const materialRef = useRef();
+
+	useFrame((state) => {
+		if (!beaconRef.current || !materialRef.current || !isVisible) return;
+
+		// Pulse animation (2.5 second loop)
+		const pulseTime = (state.clock.elapsedTime % 2.5) / 2.5;
+
+		// Scale: starts at 1, expands to 3x
+		const scale = 1 + pulseTime * 2;
+		beaconRef.current.scale.set(scale, scale, scale);
+
+		// Opacity: fades out as it expands
+		materialRef.current.opacity = (1 - pulseTime) * 0.3;
+	});
+
+	return isVisible ? (
+		<mesh
+			ref={beaconRef}
+			position={[position[0], position[1] - 1.5, position[2]]}
+			rotation={[Math.PI / 2, 0, 0]}
+		>
+			<ringGeometry args={[2, 2.3, 32]} />
+			<meshBasicMaterial
+				ref={materialRef}
+				color='#00ffff'
+				transparent
+				opacity={0.3}
+				side={THREE.DoubleSide}
+			/>
+		</mesh>
+	) : null;
+}
+
 const sections = [
 	{
 		position: [-10, -20, -10],
@@ -311,7 +347,7 @@ function SectionMarker({
 	);
 }
 
-function SectionMarkersClickable({ onSectionClick, arrivedSection }) {
+function SectionMarkersClickable({ onSectionClick, arrivedSection, showProjectsBeacon }) {
 	return (
 		<>
 			{sections.map((section, index) => (
@@ -327,6 +363,12 @@ function SectionMarkersClickable({ onSectionClick, arrivedSection }) {
 					modelScale={section.scale}
 				/>
 			))}
+
+			{/* Beacon only for Projects station (index 3) */}
+			<PulseBeacon
+				position={sections[3].position}
+				isVisible={showProjectsBeacon}
+			/>
 		</>
 	);
 }

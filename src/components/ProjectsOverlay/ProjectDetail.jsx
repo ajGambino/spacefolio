@@ -25,15 +25,23 @@ function ProjectDetail({ project, onBack }) {
 			<div className='detail-header'>
 				<div className='detail-image'>
 					{project.image ? (
-						<img
-							src={project.image}
-							alt={`${project.title} hero`}
-							className='detail-hero-image'
-							loading='lazy'
-							onError={(e) => {
-								e.currentTarget.style.display = 'none';
-							}}
-						/>
+						<a
+							href={project.image}
+							target='_blank'
+							rel='noopener noreferrer'
+							className='detail-image-link'
+							aria-label={`Open full size image of ${project.title}`}
+						>
+							<img
+								src={project.image}
+								alt={`${project.title} hero`}
+								className='detail-hero-image'
+								loading='lazy'
+								onError={(e) => {
+									e.currentTarget.style.display = 'none';
+								}}
+							/>
+						</a>
 					) : (
 						<div className='image-placeholder-large'>
 							<span className='placeholder-icon-large'>🚀</span>
