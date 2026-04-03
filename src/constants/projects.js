@@ -1,5 +1,54 @@
 export const projects = [
 	{
+		id: 'golf-sim-engine',
+		title: 'Monte Carlo Golf Tournament Simulation Engine',
+		shortDescription:
+			'Calibrated Monte Carlo engine that simulates golf tournaments hole-by-hole, producing realistic scoring distributions, cut dynamics, and outcome probabilities.',
+		longDescription:
+			'Built a full tournament simulation engine that models golf events hole-by-hole, capturing realistic scoring distributions, variance, and leaderboard dynamics. The system converts player skill profiles into probabilistic hole outcomes (eagle through double+), then aggregates into rounds and full tournaments with proper structure (including 36-hole cuts and ties). A major focus of the project was calibration: tuning distribution shape, tail risk, and skill scaling to match real-world benchmarks for winning score, cut line, field average, and scoring rates. The engine includes a modular data pipeline supporting both demo data and private raw PGA-style datasets (strokes gained, scoring stats), transforming them into simulation-ready features. Outputs include win probabilities, finish distributions, and validation diagnostics across thousands of Monte Carlo runs. The goal is to move beyond point estimates and model the full distribution of tournament outcomes while maintaining strict realism at every level of aggregation.',
+		system: [
+			'Monte Carlo',
+			'Stochastic Modeling',
+			'Sports Simulation',
+			'Probability Modeling',
+			'Python',
+			'Data Engineering',
+			'CLI Tools',
+		],
+		links: {
+			github: 'https://github.com/ajGambino/RickRunSims',
+		},
+		highlights: [
+			'Hole-by-hole stochastic simulation engine with calibrated outcome distributions',
+			'End-to-end tournament modeling including rounds, leaderboard dynamics, and top 50 + ties cut logic',
+			'Distribution calibration against real Masters benchmarks (winning score, cut line, field average, scoring rates)',
+			'Validation framework with 10/10 checks across scoring and tournament-level metrics',
+			'Modular data pipeline supporting both demo datasets and private raw golf statistics (strokes gained, scoring)',
+			'Monte Carlo runner producing win %, finish distributions, and make-cut probabilities',
+			'One-click demo (`python demo.py`) for zero-setup execution with bundled data',
+		],
+		featured: true,
+		metrics: [
+			{ label: 'Validation', value: '10/10 checks passed' },
+			{ label: 'Simulation Granularity', value: 'Hole-level' },
+			{ label: 'Tournament Logic', value: 'Cut + 4 Rounds' },
+			{ label: 'Reproducibility', value: 'Seeded runs' },
+		],
+		image: '/images/masters.png',
+		artifacts: [
+			{
+				type: 'image',
+				label: 'Player Diagnostics',
+				src: '/images/masters_diagnostics.png',
+			},
+			{
+				type: 'image',
+				label: 'Validation Report',
+				src: '/images/validation.png',
+			},
+		],
+	},
+	{
 		id: 'kalshi-btc-trader',
 		title: 'BTC Probability & Trading Engine',
 		shortDescription:
@@ -193,7 +242,7 @@ export const projects = [
 			'CSV-first data management (projections, rankings, waivers, trade values) for fast weekly updates without backend changes',
 			'Sleeper headshot caching to reduce API calls and improve load performance',
 		],
-		featured: true,
+		featured: false,
 		metrics: [
 			{
 				label: 'Core Modules',
