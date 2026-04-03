@@ -64,7 +64,7 @@ const sections = [
 		title: 'Mercury',
 		color: '#c9ada7',
 		model: 'mercury.glb',
-		scale: 0.22,
+		scale: 0.1,
 	},
 	{
 		position: [-233, -60, -440],

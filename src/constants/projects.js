@@ -189,7 +189,7 @@ export const projects = [
 		featured: true,
 		metrics: [
 			{ label: 'Game Modes', value: '2–6 Players' },
-			{ label: 'Budget per Player', value: '$100 per player' },
+			{ label: 'Budget per Player', value: '$100' },
 			{ label: 'Roster Size', value: '5 players' },
 			{ label: 'Auction Type', value: 'Blind Bidding' },
 		],
