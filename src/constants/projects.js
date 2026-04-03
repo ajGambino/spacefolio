@@ -50,7 +50,7 @@ export const projects = [
 	},
 	{
 		id: 'kalshi-btc-trader',
-		title: 'BTC Probability & Trading Engine',
+		title: 'BTC Event Pricing & Trading System',
 		shortDescription:
 			'Real-time probability model that prices BTC event outcomes from volatility and return distributions, identifying mispriced contracts and executing trades.',
 		longDescription:
@@ -214,9 +214,9 @@ export const projects = [
 	},
 	{
 		id: 'fantasy-freebies',
-		title: 'Fantasy Decision Support System',
+		title: 'Fantasy Football Analytics Suite',
 		shortDescription:
-			'Analytics platform for draft, trade, and waiver decisions using projections, rankings, and multi-source data integration.',
+			'Analytics platform for draft, trade, and waiver decisions using projections, rankings, and multi-source data integration. Password for Live Demo: ajranks',
 		longDescription:
 			'Built a comprehensive fantasy football analytics platform that consolidates the tools I actually use throughout the season: a live draft assistant (Draft Caddy), weekly projections with ESPN roster import and matchup views, rankings with ADP differential analysis, a position-weighted trade calculator supporting 1QB and Superflex formats, and weekly waiver wire writeups with historical navigation. The app is React + Vite on the frontend with Tailwind styling, uses a lightweight Express proxy (local) and Netlify Functions (production) to safely inject ESPN auth cookies and avoid browser CORS limitations, and relies on a CSV-driven data layer so weekly updates can be made without backend changes. A Python script generates projection datasets and caches Sleeper headshots for better performance. The goal is to turn fragmented fantasy data into structured, decision-ready insights across the entire season lifecycle.',
 		system: [
@@ -276,7 +276,7 @@ export const projects = [
 	},
 	{
 		id: 'smartshop',
-		title: 'Geospatial Clustering & Budget Optimization Tool',
+		title: 'Geospatial Clustering & Budget Optimizer',
 		shortDescription:
 			'Clustering system that converts national store data into local market segments and allocates budgets based on geographic density and proximity.',
 		longDescription:
@@ -318,7 +318,7 @@ export const projects = [
 	},
 	{
 		id: 'gw24-golf-tournament-manager',
-		title: 'Real-Time Tournament & Betting Engine',
+		title: 'Real-Time Golf Tournament & Betting Platform',
 		shortDescription:
 			'Live scoring and betting system with multi-format tournament logic, real-time leaderboards, and deterministic wager tracking.',
 		longDescription:
@@ -354,13 +354,8 @@ export const projects = [
 		],
 		image: '/images/gw24.png',
 		artifacts: [
-			{
-				type: 'image',
-				label: 'Live Leaderboard',
-				src: '/images/gw24-leaderboard.png',
-			},
-			{ type: 'image', label: 'Score Entry', src: '/images/gw24-scoring.png' },
-			{ type: 'image', label: 'Bets Feed', src: '/images/gw24-bets.png' },
+			{ type: 'image', label: 'Score Entry', src: '/images/gw_bet.png' },
+			{ type: 'image', label: 'Bets Feed', src: '/images/gw_history.png' },
 		],
 	},
 ];
