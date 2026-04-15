@@ -213,6 +213,49 @@ export const projects = [
 		],
 	},
 	{
+		id: 'shank-tracker',
+		title: 'Real-Time Golf Trip Scoring System',
+		shortDescription:
+			'Live scoring system for golf trips that tracks hole-by-hole performance and ranks players relative to both course difficulty and expected scoring pace.',
+		longDescription:
+			'Built a mobile-first scoring system designed for live use during a multi-round golf trip. The app tracks hole-by-hole scores in real time and computes relative performance against both course par and each player’s declared scoring baseline. A key focus was modeling fair comparison across different skill levels by converting expected averages into a par-weighted scoring rate, allowing performance to be evaluated as deviation from expectation rather than raw totals. The system uses Firestore’s real-time listeners to synchronize score updates instantly across all clients, creating a shared live leaderboard without polling or refresh. A lightweight but strict permission model is enforced at the database level: players claim identities via Google Auth, can only edit their own scorecards, and admin controls trip configuration and roster. The architecture prioritizes simplicity and reliability under real-world conditions, with minimal write complexity, derived metrics computed client-side, and a UI optimized for fast, one-handed score entry on mobile during active play.',
+		system: [
+			'Real-Time Systems',
+			'State Synchronization',
+			'Probability Modeling',
+			'Mobile UX',
+			'React',
+			'Firebase',
+			'Firestore',
+			'Authentication',
+		],
+		links: {
+			github: '', // add when ready
+			live: '', // add deployed link
+		},
+		highlights: [
+			'Live leaderboard updating in real time via Firestore onSnapshot listeners (no polling or refresh)',
+			'Relative performance model comparing players against both course par and expected scoring pace',
+			'Par-weighted expectation system for fair cross-skill comparison',
+			'Secure claim-based identity model using Google Auth with database-enforced permissions',
+			'Owner-only scorecard editing with admin override for full trip control',
+			'Atomic claim flow syncing player ownership and membership state across documents',
+			'Mobile-first score entry flow optimized for speed, clarity, and one-handed use',
+			'Round-level data model including hole pars and yardages for full course context',
+		],
+		featured: true,
+		metrics: [
+			{ label: 'Sync Model', value: 'Real-time (onSnapshot)' },
+			{ label: 'Scoring Granularity', value: 'Hole-by-hole' },
+			{ label: 'Permission Model', value: 'DB-enforced ownership' },
+			{ label: 'Platform', value: 'Mobile-first web app' },
+		],
+		image: '/images/shanktracker.png', // placeholder
+		artifacts: [
+			// add screenshots later if you want (Leaderboard, Scorecard, etc.)
+		],
+	},
+	{
 		id: 'fantasy-freebies',
 		title: 'Fantasy Football Analytics Suite',
 		shortDescription:

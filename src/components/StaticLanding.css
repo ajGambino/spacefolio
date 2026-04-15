@@ -1,0 +1,221 @@
+/* Full-viewport overlay — sits above canvas, below overlays */
+.static-landing {
+	position: fixed;
+	inset: 0;
+	z-index: 500;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Dark vignette so hero text is legible over the star field */
+.static-landing::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(
+		ellipse at 50% 40%,
+		rgba(0, 10, 22, 0.16) 0%,
+		rgba(0, 8, 20, 0.48) 30%,
+		rgba(0, 5, 15, 0.8) 66%,
+		rgba(0, 3, 10, 0.94) 100%
+	);
+	pointer-events: none;
+}
+
+/* ── Nav ─────────────────────────────────────────────────── */
+
+.landing-nav {
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 8px;
+	z-index: 10;
+	background: rgba(8, 14, 32, 0.68);
+	padding: 8px 12px;
+	border-radius: 10px;
+	backdrop-filter: blur(14px);
+	border: 1px solid rgba(0, 255, 255, 0.18);
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+}
+
+.landing-nav-btn {
+	background: rgba(0, 255, 255, 0.06);
+	border: 1px solid rgba(0, 255, 255, 0.16);
+	color: rgba(255, 255, 255, 0.84);
+	padding: 8px 16px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: 600;
+	transition:
+		background 0.3s ease,
+		border-color 0.3s ease,
+		color 0.3s ease,
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+}
+
+.landing-nav-btn:hover {
+	background: rgba(0, 255, 255, 0.12);
+	border-color: rgba(0, 255, 255, 0.32);
+	color: #00ffff;
+	transform: translateY(-1px);
+	box-shadow: 0 0 10px rgba(0, 255, 255, 0.18);
+}
+
+/* ── Hero ────────────────────────────────────────────────── */
+
+.landing-hero {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 36px;
+	text-align: center;
+	padding: 0 24px;
+	position: relative;
+	z-index: 1;
+}
+
+.landing-title-block {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.landing-eyebrow {
+	font-size: 11px;
+	letter-spacing: 0.35em;
+	color: rgba(0, 255, 255, 0.78);
+	text-transform: uppercase;
+	margin: 0 0 16px;
+}
+
+.landing-name {
+	font-size: clamp(64px, 10vw, 120px);
+	font-weight: 800;
+	color: #ffffff;
+	text-shadow:
+		0 0 18px rgba(0, 255, 255, 0.12),
+		0 0 40px rgba(0, 255, 255, 0.08);
+	line-height: 0.95;
+	margin: 0 0 20px;
+}
+
+.landing-tagline {
+	font-size: clamp(15px, 2vw, 19px);
+	color: rgba(255, 255, 255, 0.78);
+	letter-spacing: 0.03em;
+	margin: 0;
+	max-width: 720px;
+}
+
+/* ── CTAs ────────────────────────────────────────────────── */
+
+.landing-cta-group {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+}
+
+.launch-btn {
+	padding: 14px 40px;
+	font-size: 15px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	border-radius: 8px;
+	cursor: pointer;
+	min-width: 220px;
+	transition:
+		background 0.3s ease,
+		color 0.3s ease,
+		border-color 0.3s ease,
+		box-shadow 0.3s ease,
+		transform 0.3s ease;
+}
+
+.launch-btn--ready {
+	background: rgba(0, 255, 255, 0.1);
+	color: #7ffcff;
+	border: 1px solid rgba(0, 255, 255, 0.4);
+	box-shadow: 0 0 18px rgba(0, 255, 255, 0.16);
+}
+
+.launch-btn--ready:hover {
+	background: rgba(0, 255, 255, 0.2);
+	box-shadow: 0 0 32px rgba(0, 255, 255, 0.28);
+	transform: translateY(-2px);
+}
+
+.launch-btn--loading {
+	background: rgba(0, 255, 255, 0.04);
+	color: rgba(0, 255, 255, 0.35);
+	border: 1px solid rgba(0, 255, 255, 0.15);
+	cursor: default;
+}
+
+.launch-ready-hint {
+	font-size: 11px;
+	letter-spacing: 0.15em;
+	color: rgba(0, 255, 255, 0.5);
+	text-transform: uppercase;
+	margin: 0;
+}
+
+.view-projects-btn {
+	background: transparent;
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	color: rgba(255, 255, 255, 0.52);
+	padding: 10px 28px;
+	border-radius: 6px;
+	font-size: 13px;
+	cursor: pointer;
+	transition:
+		border-color 0.3s ease,
+		color 0.3s ease,
+		background 0.3s ease;
+}
+
+.view-projects-btn:hover {
+	border-color: rgba(255, 255, 255, 0.28);
+	color: rgba(255, 255, 255, 0.82);
+	background: rgba(255, 255, 255, 0.03);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+	.landing-nav {
+		gap: 4px;
+		padding: 6px 8px;
+		max-width: calc(100vw - 24px);
+		overflow-x: auto;
+	}
+
+	.landing-nav-btn {
+		padding: 6px 10px;
+		font-size: 11px;
+		white-space: nowrap;
+	}
+
+	.landing-hero {
+		gap: 28px;
+		padding: 0 20px;
+	}
+
+	.landing-name {
+		line-height: 0.98;
+	}
+
+	.launch-btn {
+		min-width: 200px;
+	}
+
+	.view-projects-btn {
+		padding: 10px 24px;
+	}
+}
