@@ -13,10 +13,10 @@
 	position: absolute;
 	inset: 0;
 	background: radial-gradient(
-		ellipse at 50% 40%,
-		rgba(0, 10, 22, 0.16) 0%,
-		rgba(0, 8, 20, 0.48) 30%,
-		rgba(0, 5, 15, 0.8) 66%,
+		ellipse at 50% 42%,
+		rgba(0, 10, 22, 0.28) 0%,
+		rgba(0, 8, 20, 0.48) 28%,
+		rgba(0, 5, 15, 0.76) 62%,
 		rgba(0, 3, 10, 0.94) 100%
 	);
 	pointer-events: none;
@@ -30,14 +30,14 @@
 	left: 50%;
 	transform: translateX(-50%);
 	display: flex;
-	gap: 8px;
+	gap: 6px;
 	z-index: 10;
-	background: rgba(8, 14, 32, 0.68);
-	padding: 8px 12px;
+	background: rgba(8, 14, 32, 0.58);
+	padding: 6px 10px;
 	border-radius: 10px;
 	backdrop-filter: blur(14px);
-	border: 1px solid rgba(0, 255, 255, 0.18);
-	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+	border: 1px solid rgba(0, 255, 255, 0.14);
+	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
 }
 
 .landing-nav-btn {
@@ -73,17 +73,36 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 36px;
+	gap: 28px;
 	text-align: center;
 	padding: 0 24px;
 	position: relative;
 	z-index: 1;
 }
 
+.landing-hero::before {
+	content: '';
+	position: absolute;
+	inset: 50% auto auto 50%;
+	transform: translate(-50%, -50%);
+	width: min(700px, 80vw);
+	height: min(420px, 50vh);
+	background: radial-gradient(
+		ellipse,
+		rgba(255, 255, 255, 0.05) 0%,
+		rgba(120, 220, 255, 0.035) 18%,
+		rgba(0, 0, 0, 0) 65%
+	);
+	filter: blur(18px);
+	pointer-events: none;
+	z-index: -1;
+}
+
 .landing-title-block {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 10px;
 }
 
 .landing-eyebrow {
@@ -91,18 +110,18 @@
 	letter-spacing: 0.35em;
 	color: rgba(0, 255, 255, 0.78);
 	text-transform: uppercase;
-	margin: 0 0 16px;
+	margin: 0;
 }
 
 .landing-name {
 	font-size: clamp(64px, 10vw, 120px);
 	font-weight: 800;
-	color: #ffffff;
+	color: #f7fbff;
 	text-shadow:
-		0 0 18px rgba(0, 255, 255, 0.12),
-		0 0 40px rgba(0, 255, 255, 0.08);
+		0 0 10px rgba(0, 255, 255, 0.08),
+		0 0 24px rgba(0, 255, 255, 0.05);
 	line-height: 0.95;
-	margin: 0 0 20px;
+	margin: 0;
 }
 
 .landing-tagline {
@@ -119,7 +138,58 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 12px;
+	gap: 8px;
+}
+
+.launch-btn-wrap {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.launch-btn-wrap::before {
+	content: '';
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%) scale(0.9);
+	width: 150%;
+	height: 210%;
+	border-radius: 999px;
+	background: radial-gradient(
+		ellipse,
+		rgba(0, 255, 255, 0.28) 0%,
+		rgba(0, 255, 255, 0.14) 35%,
+		rgba(0, 255, 255, 0.04) 58%,
+		rgba(0, 255, 255, 0) 78%
+	);
+	filter: blur(10px);
+	opacity: 0;
+	pointer-events: none;
+	z-index: 0;
+}
+
+.launch-btn-wrap.is-ready::before {
+	opacity: 1;
+	animation: launchPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes launchPulse {
+	0%,
+	100% {
+		transform: translate(-50%, -50%) scale(0.88);
+		opacity: 0.45;
+	}
+	50% {
+		transform: translate(-50%, -50%) scale(1.12);
+		opacity: 1;
+	}
+}
+
+.launch-btn {
+	position: relative;
+	z-index: 1;
 }
 
 .launch-btn {
@@ -136,6 +206,8 @@
 		border-color 0.3s ease,
 		box-shadow 0.3s ease,
 		transform 0.3s ease;
+	position: relative;
+	z-index: 1;
 }
 
 .launch-btn--ready {
@@ -159,31 +231,33 @@
 }
 
 .launch-ready-hint {
-	font-size: 11px;
-	letter-spacing: 0.15em;
-	color: rgba(0, 255, 255, 0.5);
+	font-size: 10px;
+	letter-spacing: 0.18em;
+	color: rgba(0, 255, 255, 0.46);
 	text-transform: uppercase;
 	margin: 0;
 }
 
 .view-projects-btn {
-	background: transparent;
-	border: 1px solid rgba(255, 255, 255, 0.14);
-	color: rgba(255, 255, 255, 0.52);
-	padding: 10px 28px;
+	background: rgba(255, 255, 255, 0.02);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	color: rgba(255, 255, 255, 0.62);
+	padding: 10px 24px;
 	border-radius: 6px;
 	font-size: 13px;
 	cursor: pointer;
 	transition:
 		border-color 0.3s ease,
 		color 0.3s ease,
-		background 0.3s ease;
+		background 0.3s ease,
+		transform 0.3s ease;
 }
 
 .view-projects-btn:hover {
-	border-color: rgba(255, 255, 255, 0.28);
+	border-color: rgba(255, 255, 255, 0.24);
 	color: rgba(255, 255, 255, 0.82);
-	background: rgba(255, 255, 255, 0.03);
+	background: rgba(255, 255, 255, 0.05);
+	transform: translateY(-1px);
 }
 
 /* ── Responsive ──────────────────────────────────────────── */

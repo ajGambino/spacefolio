@@ -51,13 +51,17 @@ function StaticLanding({
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.7, delay: 0.35 }}
 				>
-					<button
-						className={`launch-btn ${is3DReady ? 'launch-btn--ready' : 'launch-btn--loading'}`}
-						onClick={is3DReady ? onLaunch : undefined}
-						disabled={!is3DReady}
-					>
-						{is3DReady ? 'Launch 3D Experience' : 'Preparing 3D Experience…'}
-					</button>
+					<div className={`launch-btn-wrap ${is3DReady ? 'is-ready' : ''}`}>
+						<button
+							className={`launch-btn ${
+								is3DReady ? 'launch-btn--ready' : 'launch-btn--loading'
+							}`}
+							onClick={is3DReady ? onLaunch : undefined}
+							disabled={!is3DReady}
+						>
+							{is3DReady ? 'Launch 3D Experience' : 'Preparing 3D Experience…'}
+						</button>
+					</div>
 
 					{is3DReady && (
 						<motion.p
