@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { Stars } from '@react-three/drei';
+import { Stars, PerformanceMonitor, useGLTF } from '@react-three/drei';
 import { useRef, useState, Suspense, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import SpaceshipHybrid from './components/SpaceshipHybrid';
@@ -33,9 +33,23 @@ function AppHybrid() {
 	// Landing-layer state
 	const [hasLaunched, setHasLaunched] = useState(false);
 	const [is3DReady, setIs3DReady] = useState(false);
+	const [dpr, setDpr] = useState(1);
 
 	const handleSceneReady = () => setIs3DReady(true);
 	const handleLaunch = () => setHasLaunched(true);
+
+	useEffect(() => {
+		if (!hasLaunched) return;
+		useGLTF.preload('/models/venus.glb');
+		useGLTF.preload('/models/mercury.glb');
+		useGLTF.preload('/models/mars.glb');
+		useGLTF.preload('/models/jupiter.glb');
+		useGLTF.preload('/models/saturn.glb');
+		useGLTF.preload('/models/uranus.glb');
+		useGLTF.preload('/models/neptune.glb');
+		useGLTF.preload('/models/pluto.glb');
+		useGLTF.preload('/models/black_hole.glb');
+	}, [hasLaunched]);
 
 	const handleSectionClick = (sectionIndex) => {
 		// If already at this section and we know our position, just open the overlay
@@ -114,39 +128,45 @@ function AppHybrid() {
 				<Canvas
 					camera={{ position: [0, 5, 10], fov: 75 }}
 					style={{ background: '#000011' }}
+					dpr={dpr}
 				>
-					{/* Lighting */}
-					<ambientLight intensity={0.3} />
-					<directionalLight position={[10, 10, 5]} intensity={1} />
-					<pointLight position={[-10, -10, -5]} intensity={0.5} />
+					<PerformanceMonitor
+						onDecline={() => setDpr(0.5)}
+						onIncline={() => setDpr(1)}
+					>
+						{/* Lighting */}
+						<ambientLight intensity={0.3} />
+						<directionalLight position={[10, 10, 5]} intensity={1} />
+						<pointLight position={[-10, -10, -5]} intensity={0.5} />
 
-					{/* Background */}
-					<Stars
-						radius={100}
-						depth={50}
-						count={5000}
-						factor={4}
-						saturation={0}
-						fade
-						speed={1}
-					/>
+						{/* Background */}
+						<Stars
+							radius={100}
+							depth={50}
+							count={3000}
+							factor={4}
+							saturation={0}
+							fade
+							speed={1}
+						/>
 
-					{/* Main Scene Components */}
-					<SceneManual shipRef={shipRef} />
-					<Suspense fallback={null}>
-						<SectionMarkersClickable
-							onSectionClick={handleSectionClick}
-							arrivedSection={arrivedSection}
-						/>
-						<SpaceshipHybrid
-							ref={shipRef}
-							targetSection={targetSection}
-							onReachTarget={handleReachTarget}
-							onManualFlight={handleManualFlight}
-						/>
-						{/* Fires once all GLTF suspense promises in this boundary resolve */}
-						<SceneReadyNotifier onReady={handleSceneReady} />
-					</Suspense>
+						{/* Main Scene Components */}
+						<SceneManual shipRef={shipRef} />
+						<Suspense fallback={null}>
+							<SectionMarkersClickable
+								onSectionClick={handleSectionClick}
+								arrivedSection={arrivedSection}
+							/>
+							<SpaceshipHybrid
+								ref={shipRef}
+								targetSection={targetSection}
+								onReachTarget={handleReachTarget}
+								onManualFlight={handleManualFlight}
+							/>
+							{/* Fires once all GLTF suspense promises in this boundary resolve */}
+							<SceneReadyNotifier onReady={handleSceneReady} />
+						</Suspense>
+					</PerformanceMonitor>
 				</Canvas>
 			</div>
 

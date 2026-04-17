@@ -33,7 +33,7 @@ function SceneManual({ shipRef }) {
   return (
     <>
       {/* Ambient particles/asteroids */}
-      {Array.from({ length: 100 }).map((_, i) => {
+      {Array.from({ length: 30 }).map((_, i) => {
         const x = (Math.random() - 0.5) * 200
         const y = (Math.random() - 0.5) * 200
         const z = (Math.random() - 0.5) * 200

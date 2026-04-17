@@ -3,18 +3,10 @@ import { useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-// Preload all planet models
+// Preload only nav-reachable models upfront (indices 0–4)
+// Bonus planets (indices 5–13) are deferred until after launch in AppHybrid.jsx
 useGLTF.preload('/models/earth.glb');
 useGLTF.preload('/models/iss.glb');
-useGLTF.preload('/models/venus.glb');
-useGLTF.preload('/models/mercury.glb');
-useGLTF.preload('/models/mars.glb');
-useGLTF.preload('/models/jupiter.glb');
-useGLTF.preload('/models/saturn.glb');
-useGLTF.preload('/models/uranus.glb');
-useGLTF.preload('/models/neptune.glb');
-useGLTF.preload('/models/pluto.glb');
-useGLTF.preload('/models/black_hole.glb');
 
 const sections = [
 	{
