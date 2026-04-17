@@ -1,5 +1,5 @@
 import { Text, useGLTF } from '@react-three/drei';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, Suspense } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -303,10 +303,11 @@ function SectionMarker({
 	);
 }
 
-function SectionMarkersClickable({ onSectionClick, arrivedSection }) {
+function SectionMarkersClickable({ onSectionClick, arrivedSection, hasLaunched }) {
 	return (
 		<>
-			{sections.map((section, index) => (
+			{/* Nav-reachable sections (0–4) — always rendered, inside parent Suspense */}
+			{sections.slice(0, 5).map((section, index) => (
 				<SectionMarker
 					key={index}
 					position={section.position}
@@ -319,6 +320,25 @@ function SectionMarkersClickable({ onSectionClick, arrivedSection }) {
 					modelScale={section.scale}
 				/>
 			))}
+
+			{/* Bonus planets (5–13) — own Suspense so they can't block nav markers or SceneReadyNotifier */}
+			{hasLaunched && (
+				<Suspense fallback={null}>
+					{sections.slice(5).map((section, index) => (
+						<SectionMarker
+							key={index + 5}
+							position={section.position}
+							title={section.title}
+							color={section.color}
+							index={index + 5}
+							onClick={onSectionClick}
+							isActive={arrivedSection === index + 5}
+							modelPath={section.model}
+							modelScale={section.scale}
+						/>
+					))}
+				</Suspense>
+			)}
 		</>
 	);
 }

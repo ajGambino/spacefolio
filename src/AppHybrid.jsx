@@ -139,16 +139,18 @@ function AppHybrid() {
 						<directionalLight position={[10, 10, 5]} intensity={1} />
 						<pointLight position={[-10, -10, -5]} intensity={0.5} />
 
-						{/* Background */}
-						<Stars
-							radius={100}
-							depth={50}
-							count={3000}
-							factor={4}
-							saturation={0}
-							fade
-							speed={1}
-						/>
+						{/* Background — deferred so Stars doesn't burn GPU during the static landing */}
+						{hasLaunched && (
+							<Stars
+								radius={100}
+								depth={50}
+								count={3000}
+								factor={4}
+								saturation={0}
+								fade
+								speed={1}
+							/>
+						)}
 
 						{/* Main Scene Components */}
 						<SceneManual shipRef={shipRef} />
@@ -156,6 +158,7 @@ function AppHybrid() {
 							<SectionMarkersClickable
 								onSectionClick={handleSectionClick}
 								arrivedSection={arrivedSection}
+								hasLaunched={hasLaunched}
 							/>
 							<SpaceshipHybrid
 								ref={shipRef}
