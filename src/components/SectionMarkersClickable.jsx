@@ -303,10 +303,10 @@ function SectionMarker({
 	);
 }
 
-function SectionMarkersClickable({ onSectionClick, arrivedSection, hasLaunched }) {
+function SectionMarkersClickable({ onSectionClick, arrivedSection }) {
 	return (
 		<>
-			{/* Nav-reachable sections (0–4) — always rendered, inside parent Suspense */}
+			{/* Nav-reachable sections (0–4) — inside parent Suspense */}
 			{sections.slice(0, 5).map((section, index) => (
 				<SectionMarker
 					key={index}
@@ -321,24 +321,22 @@ function SectionMarkersClickable({ onSectionClick, arrivedSection, hasLaunched }
 				/>
 			))}
 
-			{/* Bonus planets (5–13) — own Suspense so they can't block nav markers or SceneReadyNotifier */}
-			{hasLaunched && (
-				<Suspense fallback={null}>
-					{sections.slice(5).map((section, index) => (
-						<SectionMarker
-							key={index + 5}
-							position={section.position}
-							title={section.title}
-							color={section.color}
-							index={index + 5}
-							onClick={onSectionClick}
-							isActive={arrivedSection === index + 5}
-							modelPath={section.model}
-							modelScale={section.scale}
-						/>
-					))}
-				</Suspense>
-			)}
+			{/* Bonus planets (5–13) — own Suspense so they can't block nav markers */}
+			<Suspense fallback={null}>
+				{sections.slice(5).map((section, index) => (
+					<SectionMarker
+						key={index + 5}
+						position={section.position}
+						title={section.title}
+						color={section.color}
+						index={index + 5}
+						onClick={onSectionClick}
+						isActive={arrivedSection === index + 5}
+						modelPath={section.model}
+						modelScale={section.scale}
+					/>
+				))}
+			</Suspense>
 		</>
 	);
 }
