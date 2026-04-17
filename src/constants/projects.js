@@ -35,6 +35,7 @@ export const projects = [
 			{ label: 'Reproducibility', value: 'Seeded runs' },
 		],
 		image: '/images/masters.png',
+		imagePosition: 'center 20%',
 		artifacts: [
 			{
 				type: 'image',
@@ -45,58 +46,6 @@ export const projects = [
 				type: 'image',
 				label: 'Validation Report',
 				src: '/images/validation.png',
-			},
-		],
-	},
-	{
-		id: 'kalshi-btc-trader',
-		title: 'BTC Event Pricing & Trading System',
-		shortDescription:
-			'Real-time probability model that prices BTC event outcomes from volatility and return distributions, identifying mispriced contracts and executing trades.',
-		longDescription:
-			'Built a trading pipeline that ingests live BTC-USD candles, computes rolling realized volatility, forecasts contract settlement probabilities across configurable horizons, and places/records trades via the Kalshi API. The system emphasizes reliability (freshness diagnostics, deterministic settlement scheduling, and detailed trade logs) and is designed for iterative backtesting as more trades accumulate.',
-		system: [
-			'Probability Modeling',
-			'Time Series',
-			'Stochastic Systems',
-			'Backtesting',
-			'Risk Modeling',
-			'Python',
-			'NumPy',
-			'Pandas',
-			'SciPy',
-		],
-		links: {
-			github: 'https://github.com/ajGambino/kalshi',
-			live: '',
-		},
-		highlights: [
-			'Probability model based on log returns with volatility scaling (Gaussian + Student-t distributions for fat-tail modeling)',
-			'Real-time BTC candle ingestion + freshness diagnostics to detect lag/stale feeds',
-			'Rolling realized volatility estimation and probability forecasts for event contracts',
-			'Configurable settlement horizons (hourly vs daily) with deterministic scheduling',
-			'Execution layer supporting repeatable paper trading and live trading modes',
-			'Structured trade logging for later backtesting and performance analytics',
-			'Designed to evolve: plug in new signals, calibration layers, and risk constraints',
-		],
-		featured: true,
-		metrics: [
-			{ label: 'Data Granularity', value: '1m / 5m candles' },
-			{ label: 'Volatility Window', value: '24h rolling window' },
-			{ label: 'Execution Modes', value: 'Paper + Live trading' },
-			{ label: 'Settlement Horizons', value: 'Hourly / Daily' },
-		],
-		image: '/images/kalshi.png',
-		artifacts: [
-			{
-				type: 'image',
-				label: 'Architecture',
-				src: '/images/kalshi-arch.png',
-			},
-			{
-				type: 'image',
-				label: 'Trade Log',
-				src: '/images/kalshi-log.png',
 			},
 		],
 	},
@@ -156,6 +105,59 @@ export const projects = [
 			},
 		],
 	},
+	{
+		id: 'kalshi-btc-trader',
+		title: 'BTC Event Pricing & Trading System',
+		shortDescription:
+			'Real-time probability model that prices BTC event outcomes from volatility and return distributions, identifying mispriced contracts and executing trades.',
+		longDescription:
+			'Built a trading pipeline that ingests live BTC-USD candles, computes rolling realized volatility, forecasts contract settlement probabilities across configurable horizons, and places/records trades via the Kalshi API. The system emphasizes reliability (freshness diagnostics, deterministic settlement scheduling, and detailed trade logs) and is designed for iterative backtesting as more trades accumulate.',
+		system: [
+			'Probability Modeling',
+			'Time Series',
+			'Stochastic Systems',
+			'Backtesting',
+			'Risk Modeling',
+			'Python',
+			'NumPy',
+			'Pandas',
+			'SciPy',
+		],
+		links: {
+			github: 'https://github.com/ajGambino/kalshi',
+			live: '',
+		},
+		highlights: [
+			'Probability model based on log returns with volatility scaling (Gaussian + Student-t distributions for fat-tail modeling)',
+			'Real-time BTC candle ingestion + freshness diagnostics to detect lag/stale feeds',
+			'Rolling realized volatility estimation and probability forecasts for event contracts',
+			'Configurable settlement horizons (hourly vs daily) with deterministic scheduling',
+			'Execution layer supporting repeatable paper trading and live trading modes',
+			'Structured trade logging for later backtesting and performance analytics',
+			'Designed to evolve: plug in new signals, calibration layers, and risk constraints',
+		],
+		featured: true,
+		metrics: [
+			{ label: 'Data Granularity', value: '1m / 5m candles' },
+			{ label: 'Volatility Window', value: '24h rolling window' },
+			{ label: 'Execution Modes', value: 'Paper + Live trading' },
+			{ label: 'Settlement Horizons', value: 'Hourly / Daily' },
+		],
+		image: '/images/kalshi.png',
+		artifacts: [
+			{
+				type: 'image',
+				label: 'Architecture',
+				src: '/images/kalshi-arch.png',
+			},
+			{
+				type: 'image',
+				label: 'Trade Log',
+				src: '/images/kalshi-log.png',
+			},
+		],
+	},
+
 	{
 		id: 'fantasy-blind-auction',
 		title: 'Real-Time Auction Engine',
@@ -230,8 +232,8 @@ export const projects = [
 			'Authentication',
 		],
 		links: {
-			github: '', // add when ready
-			live: '', // add deployed link
+			github: 'https://github.com/ajGambino/ShankTracker',
+			live: 'https://shanktracker.netlify.app/',
 		},
 		highlights: [
 			'Live leaderboard updating in real time via Firestore onSnapshot listeners (no polling or refresh)',
@@ -243,16 +245,24 @@ export const projects = [
 			'Mobile-first score entry flow optimized for speed, clarity, and one-handed use',
 			'Round-level data model including hole pars and yardages for full course context',
 		],
-		featured: true,
+		featured: false,
 		metrics: [
 			{ label: 'Sync Model', value: 'Real-time (onSnapshot)' },
 			{ label: 'Scoring Granularity', value: 'Hole-by-hole' },
 			{ label: 'Permission Model', value: 'DB-enforced ownership' },
 			{ label: 'Platform', value: 'Mobile-first web app' },
 		],
-		image: '/images/shanktracker.png', // placeholder
+		image: '/images/shank1.jpg',
+		imagePosition: 'center 20%',
 		artifacts: [
-			// add screenshots later if you want (Leaderboard, Scorecard, etc.)
+			{
+				type: 'image',
+				label: 'Leaderboard',
+				src: '/images/shank2.jpg',
+				imagePosition: 'bottom center',
+			},
+			{ type: 'image', label: 'Admin Controls', src: '/images/shank3.jpg' },
+			{ type: 'image', label: 'Scorecard', src: '/images/shank4.jpg' },
 		],
 	},
 	{

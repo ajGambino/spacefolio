@@ -108,9 +108,11 @@ function AboutOverlay({ isOpen, onClose }) {
 									transition={{ delay: 0.2 }}
 								>
 									<div className='profile-image-container'>
-										<div className='profile-image-placeholder'>
-											<span className='profile-icon'>👤</span>
-										</div>
+										<img
+											src='/images/aj.jpg'
+											alt='AJ Gambino'
+											className='profile-image'
+										/>
 										<div className='profile-glow' />
 									</div>
 								</motion.div>
@@ -122,7 +124,7 @@ function AboutOverlay({ isOpen, onClose }) {
 									animate={{ opacity: 1, x: 0 }}
 									transition={{ delay: 0.25 }}
 								>
-									<h3 className='bio-heading'>Hello, I'm Alex</h3>
+									<h3 className='bio-heading'>Hello, I'm AJ</h3>
 									<div className='bio-divider' />
 
 									<p className='bio-text'>

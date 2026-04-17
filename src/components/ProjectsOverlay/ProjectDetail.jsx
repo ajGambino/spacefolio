@@ -159,7 +159,7 @@ function ProjectDetail({ project, onBack }) {
 									whileHover={{ y: -2, scale: 1.01 }}
 								>
 									<div className='artifact-thumb'>
-										<img src={a.src} alt={a.label} />
+										<img src={a.src} alt={a.label} style={a.imagePosition ? { objectPosition: a.imagePosition } : undefined} />
 										<div className='artifact-thumb-overlay' />
 									</div>
 									<div className='artifact-meta'>

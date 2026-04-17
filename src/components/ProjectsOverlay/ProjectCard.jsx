@@ -41,6 +41,7 @@ function ProjectCard({ project, onClick }) {
 						alt={`${project.title} preview`}
 						className='project-image'
 						loading='lazy'
+						style={project.imagePosition ? { objectPosition: project.imagePosition } : undefined}
 						onError={(e) => {
 							// Fallback if path is wrong / missing in production
 							e.currentTarget.style.display = 'none';
