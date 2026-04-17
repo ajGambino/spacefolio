@@ -28,14 +28,7 @@ const SpaceshipHybrid = forwardRef(({ targetSection, onReachTarget, onManualFlig
 	const lastTargetSection = useRef(-1);
 	const isManualFlying = useRef(false);
 
-	// Try to load the GLTF model
-	let model = null;
-	try {
-		const { scene } = useGLTF('/models/spaceship.glb');
-		model = scene;
-	} catch (e) {
-		// Model not available, will use fallback geometry
-	}
+	const { scene: model } = useGLTF('/models/spaceship.glb');
 
 	// Keyboard event handlers
 	useEffect(() => {
@@ -244,5 +237,7 @@ const SpaceshipHybrid = forwardRef(({ targetSection, onReachTarget, onManualFlig
 		</group>
 	);
 });
+
+useGLTF.preload('/models/spaceship.glb');
 
 export default SpaceshipHybrid;
